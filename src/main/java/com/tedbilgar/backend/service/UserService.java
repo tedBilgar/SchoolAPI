@@ -12,4 +12,7 @@ public interface UserService {
 
     public User findUserByEmail(String email);
     public void saveUser(User user);
+    public boolean initUser(User user);
+    public String getUserNameByEmail(String email);
+ //   public int getScoreByEmail(String email);
 }

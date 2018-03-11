@@ -3,10 +3,9 @@ package com.tedbilgar.backend.controller;
 import com.tedbilgar.backend.model.User;
 import com.tedbilgar.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -33,6 +32,17 @@ public class MainController {
         return userService.findFUser();
     }
 
+    @RequestMapping("/users/{email}/name")
+    public String getUserNameByEmail(@PathVariable("email")String email){
+        return userService.getUserNameByEmail(email);
+    }
+    /*@RequestMapping("/users/{email}/score")
+    public String getUserNameByEmail(@PathVariable("email")String email){
+        return userService.getUserNameByEmail(email);
+    }*/
+
+
+    // Mapping for registration and login
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String createNewUserExample4(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
@@ -53,5 +63,15 @@ public class MainController {
         }
         return "Nice registration";
     }
-    //New Info
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String Login(@Valid User user, BindingResult bindingResult){
+        if(userService.initUser(user))
+        {
+            return userService.findUserByEmail(user.getEmail()).getName();
+        }
+        return "Bad Registration";
+       //return user.getPassword();
+    }
+
 }

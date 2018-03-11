@@ -4,6 +4,7 @@ import com.tedbilgar.backend.model.Role;
 import com.tedbilgar.backend.model.User;
 import com.tedbilgar.backend.repository.RoleRepository;
 import com.tedbilgar.backend.repository.UserRepository;
+import org.aspectj.weaver.bcel.BcelAccessForInlineMunger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,6 +26,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    // API functions
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
@@ -40,7 +42,17 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return userRepository.findUserById(1);
     }
 
-    // essantial funcs
+    @Override
+    public String getUserNameByEmail(String email){
+        return userRepository.findUserByEmail(email).getName();
+    }
+
+    /*@Override
+    public int getScoreByEmail(String email){
+        return userRepository.findUserByEmail(email).getScore();
+    }*/
+
+    // Essantial funcs
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
@@ -53,6 +65,20 @@ public class UserServiceImp implements UserService, UserDetailsService {
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
+    }
+
+    @Override
+    public boolean initUser(User user) {
+        User userExists = userRepository.findUserByEmail(user.getEmail());
+       // user.setPassword(new BCryptPasswordEncoder().matches(user.getPassword(),userExists.getPassword()));
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (userExists !=null){
+            if(encoder.matches(user.getPassword(),userExists.getPassword())){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
