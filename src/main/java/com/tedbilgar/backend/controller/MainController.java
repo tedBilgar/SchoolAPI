@@ -1,6 +1,8 @@
 package com.tedbilgar.backend.controller;
 
+import com.tedbilgar.backend.model.Location;
 import com.tedbilgar.backend.model.User;
+import com.tedbilgar.backend.service.LocationService;
 import com.tedbilgar.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ import java.util.List;
 public class MainController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LocationService locationService;
 
     @RequestMapping("/findAll")
     public List<User> findAll(){
@@ -36,10 +41,29 @@ public class MainController {
     public String getUserNameByEmail(@PathVariable("email")String email){
         return userService.getUserNameByEmail(email);
     }
-    /*@RequestMapping("/users/{email}/score")
-    public String getUserNameByEmail(@PathVariable("email")String email){
-        return userService.getUserNameByEmail(email);
-    }*/
+    @RequestMapping("/users/{email}/score")
+    public int  getScoreByEmail(@PathVariable("email")String email){
+        return userService.getScoreByEmail(email);
+    }
+
+    @RequestMapping(value = "/users/setscore",method = RequestMethod.POST)
+    public String setScoreByEmail(@Valid User user,BindingResult bindingResult){
+        System.out.println(user.getEmail());
+         userService.setScoreByEmail(user.getEmail(),2);
+         return "Nice score";
+    }
+
+    //API for locations
+
+    @RequestMapping("/locations")
+    public List<Location> findAllLocations(){
+        return locationService.findAllLocations();
+    }
+
+    @RequestMapping("/locations/{name}")
+    public Location findLocationByName(@PathVariable("name")String name){
+        return locationService.findLocationByName(name);
+    }
 
 
     // Mapping for registration and login
@@ -68,7 +92,7 @@ public class MainController {
     public String Login(@Valid User user, BindingResult bindingResult){
         if(userService.initUser(user))
         {
-            return userService.findUserByEmail(user.getEmail()).getName();
+            return user.getEmail();
         }
         return "Bad Registration";
        //return user.getPassword();

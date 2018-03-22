@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -37,8 +38,9 @@ public class User {
     @Column(name = "active")
     private boolean active;
 
-    /*@Column(name = "score")
-    private int score;*/
+    @Column(name = "score")
+    @Value(value = "0")
+    private int score;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -92,12 +94,12 @@ public class User {
         this.roles = roles;
     }
 
-    /*public int getScore() {
+    public int getScore() {
         return score;
     }
 
     public void setScore(int score) {
         this.score = score;
-    }*/
+    }
 
 }
