@@ -17,5 +17,7 @@ public class Location {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "wave")
+    private int waves;
 
 }

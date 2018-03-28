@@ -2,6 +2,7 @@ package com.tedbilgar.backend.controller;
 
 import com.tedbilgar.backend.model.Location;
 import com.tedbilgar.backend.model.User;
+import com.tedbilgar.backend.model.UserData;
 import com.tedbilgar.backend.service.LocationService;
 import com.tedbilgar.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class MainController {
 
     @Autowired
     private LocationService locationService;
+
+    UserData userData;
 
     @RequestMapping("/findAll")
     public List<User> findAll(){
@@ -46,11 +49,28 @@ public class MainController {
         return userService.getScoreByEmail(email);
     }
 
-    @RequestMapping(value = "/users/setscore",method = RequestMethod.POST)
-    public String setScoreByEmail(@Valid User user,BindingResult bindingResult){
-        System.out.println(user.getEmail());
-         userService.setScoreByEmail(user.getEmail(),2);
-         return "Nice score";
+    /*@RequestMapping(value = "/users/setscore",method = RequestMethod.POST)
+    public UserData setScoreByEmail(@RequestBody UserData userData){
+        System.out.println(userData.getEmail());
+
+         userService.setScoreByEmail(userData.getEmail(),userData.getScore());
+         return userData;
+    }*/
+    @RequestMapping(value = "/users/setscore", method = RequestMethod.POST)
+    public String setScore(@Valid UserData userData, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        User userExists = userService.findUserByEmail(userData.getEmail());
+
+        userService.setScoreByEmail(userExists.getEmail(),userData.getScore());
+
+
+
+        return "Nice registration";
+    }
+    @RequestMapping("/get")
+    public UserData get(){
+
+        return this.userData;
     }
 
     //API for locations

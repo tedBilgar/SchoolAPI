@@ -53,9 +53,12 @@ public class UserServiceImp implements UserService, UserDetailsService {
     }
 
     @Override
-    public void setScoreByEmail(String email,int score){
-        User user = userRepository.findUserByEmail(email);
-        user.setScore(user.getScore()+score);
+    public int setScoreByEmail(String email,int score){
+        User userExists = userRepository.findUserByEmail(email);
+        if(userExists == null) return 0;
+        userExists.setScore(userExists.getScore()+score);
+        userRepository.save(userExists);
+        return 1;
     }
 
     // Essantial funcs
