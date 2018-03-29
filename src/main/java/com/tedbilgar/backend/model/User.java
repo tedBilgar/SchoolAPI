@@ -46,6 +46,10 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="user_items",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private Set<Item> items;
+
     public int getId() {
         return id;
     }
@@ -102,4 +106,11 @@ public class User {
         this.score = score;
     }
 
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 }
