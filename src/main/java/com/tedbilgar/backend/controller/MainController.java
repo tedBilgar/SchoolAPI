@@ -3,9 +3,12 @@ package com.tedbilgar.backend.controller;
 import com.tedbilgar.backend.model.Location;
 import com.tedbilgar.backend.model.User;
 import com.tedbilgar.backend.model.UserData;
+import com.tedbilgar.backend.model.UserItem;
 import com.tedbilgar.backend.service.LocationService;
 import com.tedbilgar.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +26,9 @@ public class MainController {
     @Autowired
     private LocationService locationService;
 
-    UserData userData;
+    private UserData userData;
 
+    private UserItem userItem;
     @RequestMapping("/findAll")
     public List<User> findAll(){
         return userService.findAll();
@@ -85,6 +89,13 @@ public class MainController {
         return locationService.findLocationByName(name);
     }
 
+    @RequestMapping(value = "/setItem",method = RequestMethod.POST)
+    public ResponseEntity<UserItem> SetItem(@RequestBody UserItem userItem){
+        System.out.println(userItem.getEmail());
+        System.out.println(userItem.getItemName());
+        userService.setItemByName(userItem.getEmail(),userItem.getItemName());
+        return new ResponseEntity<UserItem>(userItem, HttpStatus.OK);
+    }
 
     // Mapping for registration and login
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

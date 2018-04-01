@@ -16,4 +16,5 @@ public interface UserService {
     public String getUserNameByEmail(String email);
     public int getScoreByEmail(String email);
     public int setScoreByEmail(String email,int score);
+    public int setItemByName(String email,String itemName);
 }

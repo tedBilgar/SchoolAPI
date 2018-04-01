@@ -1,7 +1,9 @@
 package com.tedbilgar.backend.service;
 
+import com.tedbilgar.backend.model.Item;
 import com.tedbilgar.backend.model.Role;
 import com.tedbilgar.backend.model.User;
+import com.tedbilgar.backend.repository.ItemRepository;
 import com.tedbilgar.backend.repository.RoleRepository;
 import com.tedbilgar.backend.repository.UserRepository;
 import org.aspectj.weaver.bcel.BcelAccessForInlineMunger;
@@ -23,6 +25,8 @@ public class UserServiceImp implements UserService, UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private ItemRepository itemRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -57,6 +61,15 @@ public class UserServiceImp implements UserService, UserDetailsService {
         User userExists = userRepository.findUserByEmail(email);
         if(userExists == null) return 0;
         userExists.setScore(userExists.getScore()+score);
+        userRepository.save(userExists);
+        return 1;
+    }
+    @Override
+    public int setItemByName(String email,String itemName){
+        User userExists = userRepository.findUserByEmail(email);
+        if(userExists == null) return 0;
+        Item userItem = itemRepository.findItemByItemName(itemName);
+        userExists.setItems(new HashSet<Item>(Arrays.asList(userItem)));
         userRepository.save(userExists);
         return 1;
     }
