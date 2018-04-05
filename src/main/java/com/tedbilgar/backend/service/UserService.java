@@ -1,9 +1,11 @@
 package com.tedbilgar.backend.service;
 
+import com.tedbilgar.backend.model.Item;
 import com.tedbilgar.backend.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
     public List<User> findAll();
@@ -17,4 +19,5 @@ public interface UserService {
     public int getScoreByEmail(String email);
     public int setScoreByEmail(String email,int score);
     public int setItemByName(String email,String itemName);
+    public Set<Item> getItemsByEmail(String email);
 }

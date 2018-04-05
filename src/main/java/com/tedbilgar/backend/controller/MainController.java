@@ -1,9 +1,6 @@
 package com.tedbilgar.backend.controller;
 
-import com.tedbilgar.backend.model.Location;
-import com.tedbilgar.backend.model.User;
-import com.tedbilgar.backend.model.UserData;
-import com.tedbilgar.backend.model.UserItem;
+import com.tedbilgar.backend.model.*;
 import com.tedbilgar.backend.service.LocationService;
 import com.tedbilgar.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -71,6 +69,8 @@ public class MainController {
 
         return "Nice registration";
     }
+
+
     @RequestMapping("/get")
     public UserData get(){
 
@@ -95,6 +95,11 @@ public class MainController {
         System.out.println(userItem.getItemName());
         userService.setItemByName(userItem.getEmail(),userItem.getItemName());
         return new ResponseEntity<UserItem>(userItem, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getItems",method = RequestMethod.POST)
+    public Set<Item> SetItem(@RequestBody UserEmail userEmail){
+        return userService.getItemsByEmail(userEmail.getEmail());
     }
 
     // Mapping for registration and login

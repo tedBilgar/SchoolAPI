@@ -74,6 +74,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return 1;
     }
 
+    @Override
+    public Set<Item> getItemsByEmail(String email) {
+        return userRepository.findUserByEmail(email).getItems();
+    }
+
     // Essantial funcs
     @Override
     public User findUserByEmail(String email) {
