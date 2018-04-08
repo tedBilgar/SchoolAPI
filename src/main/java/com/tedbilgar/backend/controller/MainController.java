@@ -27,6 +27,8 @@ public class MainController {
     private UserData userData;
 
     private UserItem userItem;
+
+    private UserItems userItems;
     @RequestMapping("/findAll")
     public List<User> findAll(){
         return userService.findAll();
@@ -97,9 +99,17 @@ public class MainController {
         return new ResponseEntity<UserItem>(userItem, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getItems",method = RequestMethod.POST)
+    /*@RequestMapping(value = "/getItems",method = RequestMethod.POST)
     public Set<Item> SetItem(@RequestBody UserEmail userEmail){
         return userService.getItemsByEmail(userEmail.getEmail());
+    }*/
+
+
+
+    @ResponseBody @RequestMapping(value = "/getItems",method = RequestMethod.POST)
+    public UserItems SetItem(@RequestBody UserEmail userEmail){
+        userItems.setUserItemList(userService.getItemsByEmail(userEmail.getEmail()));
+        return userItems;
     }
 
     // Mapping for registration and login
