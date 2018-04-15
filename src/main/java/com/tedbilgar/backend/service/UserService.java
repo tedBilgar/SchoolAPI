@@ -20,4 +20,8 @@ public interface UserService {
     public int setScoreByEmail(String email,int score);
     public int setItemByName(String email,String itemName);
     public Set<Item> getItemsByEmail(String email);
+
+    //Level grade
+    public void setLevelGradeByEmailAndHero(String email,String heroName,String levelGrade);
+    public String getLevelGrade (String email,String heroName);
 }

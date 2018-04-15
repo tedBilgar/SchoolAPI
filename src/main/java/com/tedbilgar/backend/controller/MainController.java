@@ -99,15 +99,10 @@ public class MainController {
         return new ResponseEntity<UserItem>(userItem, HttpStatus.OK);
     }
 
-    /*@RequestMapping(value = "/getItems",method = RequestMethod.POST)
-    public Set<Item> SetItem(@RequestBody UserEmail userEmail){
-        return userService.getItemsByEmail(userEmail.getEmail());
-    }*/
-
-
 
     @ResponseBody @RequestMapping(value = "/getItems",method = RequestMethod.POST)
     public UserItems SetItem(@RequestBody UserEmail userEmail){
+        userItems = new UserItems();
         userItems.setUserItemList(userService.getItemsByEmail(userEmail.getEmail()));
         return userItems;
     }

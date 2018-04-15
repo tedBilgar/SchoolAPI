@@ -3,6 +3,7 @@ package com.tedbilgar.backend.service;
 import com.tedbilgar.backend.model.Item;
 import com.tedbilgar.backend.model.Role;
 import com.tedbilgar.backend.model.User;
+import com.tedbilgar.backend.repository.HeroRepository;
 import com.tedbilgar.backend.repository.ItemRepository;
 import com.tedbilgar.backend.repository.RoleRepository;
 import com.tedbilgar.backend.repository.UserRepository;
@@ -27,6 +28,8 @@ public class UserServiceImp implements UserService, UserDetailsService {
     private RoleRepository roleRepository;
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    private HeroRepository heroRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -79,7 +82,21 @@ public class UserServiceImp implements UserService, UserDetailsService {
         return userRepository.findUserByEmail(email).getItems();
     }
 
-    // Essantial funcs
+    //Methods for Level Grade
+    @Override
+    public void setLevelGradeByEmailAndHero(String email, String heroName, String levelGrade) {
+        User user = userRepository.findUserByEmail(email);
+        if (user.getHeroes().contains(heroRepository.findHeroByHeroName(heroName))){
+
+        }
+    }
+
+    @Override
+    public String getLevelGrade(String email, String heroName) {
+        return null;
+    }
+
+    // Essential funcs
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);

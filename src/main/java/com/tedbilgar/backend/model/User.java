@@ -50,6 +50,10 @@ public class User {
     @JoinTable(name="user_items",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "item_id"))
     private Set<Item> items;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="Hero_Custom",joinColumns = @JoinColumn(name = "user_id1"), inverseJoinColumns = @JoinColumn(name = "hero_id1"))
+    private Set<Hero> heroes;
+
     public int getId() {
         return id;
     }
@@ -114,5 +118,8 @@ public class User {
         this.items = items;
     }
 
+    public Set<Hero> getHeroes() {return heroes;}
+
+    public void setHeroes(Set<Hero> heroes) {this.heroes = heroes;}
 
 }
