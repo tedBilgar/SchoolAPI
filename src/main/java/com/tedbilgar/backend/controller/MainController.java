@@ -29,6 +29,8 @@ public class MainController {
     private UserItem userItem;
 
     private UserItems userItems;
+
+    private HeroAndUser heroAndUser;
     @RequestMapping("/findAll")
     public List<User> findAll(){
         return userService.findAll();
@@ -106,6 +108,11 @@ public class MainController {
         userItems.setUserItemList(userService.getItemsByEmail(userEmail.getEmail()));
         return userItems;
     }
+
+    /*@RequestMapping(value = "/getLevelGrade",method = RequestMethod.POST)
+    public String getLevelGrade(@RequestBody HeroAndUser heroAndUser){
+        return userService.getLevelGrade(heroAndUser.getHero_name(),heroAndUser.getUser_name());
+    }*/
 
     // Mapping for registration and login
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

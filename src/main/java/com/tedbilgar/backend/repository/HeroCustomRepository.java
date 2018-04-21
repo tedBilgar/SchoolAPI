@@ -10,5 +10,5 @@ public interface HeroCustomRepository extends JpaRepository<HeroCustom,Long> {
     @Override
     HeroCustom findOne(Long aLong);
 
-    //HeroCustom findHeroCustomBy
+    HeroCustom findHeroCustomByHero_idAndUser_id(int hero_id,int user_id);
 }

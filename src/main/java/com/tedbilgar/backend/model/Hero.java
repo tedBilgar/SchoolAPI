@@ -13,7 +13,22 @@ public class Hero {
     @Column(name = "hero_id")
     private int id;
 
-    @Column
+    @Column(name = "hero_name")
     private String heroName;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getHeroName() {
+        return heroName;
+    }
+
+    public void setHeroName(String heroName) {
+        this.heroName = heroName;
+    }
 }

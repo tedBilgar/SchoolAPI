@@ -1,12 +1,10 @@
 package com.tedbilgar.backend.service;
 
+import com.tedbilgar.backend.model.HeroCustom;
 import com.tedbilgar.backend.model.Item;
 import com.tedbilgar.backend.model.Role;
 import com.tedbilgar.backend.model.User;
-import com.tedbilgar.backend.repository.HeroRepository;
-import com.tedbilgar.backend.repository.ItemRepository;
-import com.tedbilgar.backend.repository.RoleRepository;
-import com.tedbilgar.backend.repository.UserRepository;
+import com.tedbilgar.backend.repository.*;
 import org.aspectj.weaver.bcel.BcelAccessForInlineMunger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,6 +28,8 @@ public class UserServiceImp implements UserService, UserDetailsService {
     private ItemRepository itemRepository;
     @Autowired
     private HeroRepository heroRepository;
+    @Autowired
+    private HeroCustomRepository heroCustomRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -93,7 +93,10 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     public String getLevelGrade(String email, String heroName) {
-        return null;
+        int user_id = userRepository.findUserByEmail(email).getId();
+        int hero_id = heroRepository.findHeroByHeroName(heroName).getId();
+        HeroCustom heroCustom = heroCustomRepository.findHeroCustomByHero_idAndUser_id(hero_id,user_id);
+        return heroCustom.getLevelPath();
     }
 
     // Essential funcs

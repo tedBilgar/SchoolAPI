@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Data
+//@Data
 @Table(name = "Hero_Custom")
 public class HeroCustom {
     @Id
@@ -14,14 +14,54 @@ public class HeroCustom {
     private int id;
 
     @Column(name = "user_id1")
-    int user_id;
+    private int user_id;
 
     @Column(name = "hero_id1")
-    int hero_id;
+    private int hero_id;
 
     @Column(name = "level_path")
-    String levelPath;
+    private String levelPath;
 
     @Column(name = "tree_path")
-    String treePath;
+    private String treePath;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getHero_id() {
+        return hero_id;
+    }
+
+    public void setHero_id(int hero_id) {
+        this.hero_id = hero_id;
+    }
+
+    public String getLevelPath() {
+        return levelPath;
+    }
+
+    public void setLevelPath(String levelPath) {
+        this.levelPath = levelPath;
+    }
+
+    public String getTreePath() {
+        return treePath;
+    }
+
+    public void setTreePath(String treePath) {
+        this.treePath = treePath;
+    }
 }
