@@ -1,9 +1,6 @@
 package com.tedbilgar.backend.service;
 
-import com.tedbilgar.backend.model.HeroCustom;
-import com.tedbilgar.backend.model.Item;
-import com.tedbilgar.backend.model.Role;
-import com.tedbilgar.backend.model.User;
+import com.tedbilgar.backend.model.*;
 import com.tedbilgar.backend.repository.*;
 import org.aspectj.weaver.bcel.BcelAccessForInlineMunger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,18 +82,58 @@ public class UserServiceImp implements UserService, UserDetailsService {
     //Methods for Level Grade
     @Override
     public void setLevelGradeByEmailAndHero(String email, String heroName, String levelGrade) {
-        User user = userRepository.findUserByEmail(email);
-        if (user.getHeroes().contains(heroRepository.findHeroByHeroName(heroName))){
-
+        int user_id = userRepository.findUserByEmail(email).getId();
+        int hero_id = heroRepository.findHeroByHeroName(heroName).getId();
+        HeroCustom heroCustomExists = heroCustomRepository.findHeroCustomByUserIdAndHeroId(user_id,hero_id);
+        if (heroCustomExists != null){
+            heroCustomExists.setLevelPath(levelGrade);
+            heroCustomRepository.save(heroCustomExists);
+        }else{
+            heroCustomExists = new HeroCustom();
+            long b = heroCustomRepository.count();
+            heroCustomExists.setId((int)b+1);
+            heroCustomExists.setUserId(user_id);
+            heroCustomExists.setHeroId(hero_id);
+            heroCustomExists.setLevelPath(levelGrade);
+            heroCustomRepository.save(heroCustomExists);
         }
     }
 
     @Override
-    public String getLevelGrade(String email, String heroName) {
+    public void setTreeGradeByEmailAndHero(String email, String heroName, String treeGrade) {
         int user_id = userRepository.findUserByEmail(email).getId();
         int hero_id = heroRepository.findHeroByHeroName(heroName).getId();
-        HeroCustom heroCustom = heroCustomRepository.findHeroCustomByHero_idAndUser_id(hero_id,user_id);
-        return heroCustom.getLevelPath();
+        HeroCustom heroCustomExists = heroCustomRepository.findHeroCustomByUserIdAndHeroId(user_id,hero_id);
+        if (heroCustomExists != null){
+            heroCustomExists.setTreePath(treeGrade);
+            heroCustomRepository.save(heroCustomExists);
+        }else{
+            heroCustomExists = new HeroCustom();
+            long b = heroCustomRepository.count();
+            heroCustomExists.setId((int)b+1);
+            heroCustomExists.setUserId(user_id);
+            heroCustomExists.setHeroId(hero_id);
+            heroCustomExists.setTreePath(treeGrade);
+            heroCustomRepository.save(heroCustomExists);
+        }
+    }
+
+
+    @Override
+    public HeroCustom getHeroCustom(String email, String heroName) {
+        int user_id = userRepository.findUserByEmail(email).getId();
+        int hero_id = heroRepository.findHeroByHeroName(heroName).getId();
+        return heroCustomRepository.findHeroCustomByUserIdAndHeroId(user_id,hero_id);
+    }
+
+    @Override
+    public HeroCustom getHeroCustomById (int id){
+        return heroCustomRepository.findHeroCustomById(id);
+    }
+
+    @Override
+    public Set<HeroCustom> getHeroesCustomsByUserEmail(String email) {
+        return heroCustomRepository.findHeroCustomsByUserId(userRepository.findUserByEmail(email).getId());
     }
 
     // Essential funcs

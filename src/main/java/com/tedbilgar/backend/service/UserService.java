@@ -1,5 +1,6 @@
 package com.tedbilgar.backend.service;
 
+import com.tedbilgar.backend.model.HeroCustom;
 import com.tedbilgar.backend.model.Item;
 import com.tedbilgar.backend.model.User;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,10 @@ public interface UserService {
 
     //Level grade
     public void setLevelGradeByEmailAndHero(String email,String heroName,String levelGrade);
-    public String getLevelGrade (String email,String heroName);
+    public void setTreeGradeByEmailAndHero(String email,String heroName,String treeGrade);
+    public HeroCustom getHeroCustom (String email,String heroName);
+    public HeroCustom getHeroCustomById (int id);
+
+    public Set<HeroCustom> getHeroesCustomsByUserEmail(String email);
+
 }

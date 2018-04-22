@@ -5,19 +5,18 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-//@Data
+@Data
 @Table(name = "Hero_Custom")
 public class HeroCustom {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "hero_customId")
     private int id;
 
     @Column(name = "user_id1")
-    private int user_id;
+    private int userId;
 
     @Column(name = "hero_id1")
-    private int hero_id;
+    private int heroId;
 
     @Column(name = "level_path")
     private String levelPath;
@@ -33,20 +32,20 @@ public class HeroCustom {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getHero_id() {
-        return hero_id;
+    public int getHeroId() {
+        return heroId;
     }
 
-    public void setHero_id(int hero_id) {
-        this.hero_id = hero_id;
+    public void setHeroId(int heroId) {
+        this.heroId = heroId;
     }
 
     public String getLevelPath() {

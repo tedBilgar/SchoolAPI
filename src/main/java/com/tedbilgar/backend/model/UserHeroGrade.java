@@ -1,8 +1,17 @@
 package com.tedbilgar.backend.model;
 
-public class HeroAndUser {
+public class UserHeroGrade {
     private String hero_name;
     private String user_email;
+    private String grade;
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 
     public String getHero_name() {
         return hero_name;

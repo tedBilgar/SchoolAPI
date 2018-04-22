@@ -109,10 +109,27 @@ public class MainController {
         return userItems;
     }
 
-    /*@RequestMapping(value = "/getLevelGrade",method = RequestMethod.POST)
-    public String getLevelGrade(@RequestBody HeroAndUser heroAndUser){
-        return userService.getLevelGrade(heroAndUser.getHero_name(),heroAndUser.getUser_name());
-    }*/
+    @ResponseBody @RequestMapping(value = "/getHeroCustom",method = RequestMethod.POST)
+    public HeroCustom getHeroCustom(@RequestBody HeroAndUser heroAndUser){
+        return userService.getHeroCustom(heroAndUser.getUser_email(),heroAndUser.getHero_name());
+    }
+
+    @RequestMapping(value = "/setLevelGrade",method = RequestMethod.POST)
+    public void setLevelGrade(@RequestBody UserHeroGrade userHeroGrade){
+        userService.setLevelGradeByEmailAndHero(userHeroGrade.getUser_email(),userHeroGrade.getHero_name(),userHeroGrade.getGrade());
+    }
+
+    @ResponseBody @RequestMapping(value= "/getHeroesByUser",method = RequestMethod.POST)
+    public UserHeroes getHeroesByUser(@RequestBody UserEmail userEmail){
+        UserHeroes userHeroes = new UserHeroes();
+        userHeroes.setUserHeroes(userService.getHeroesCustomsByUserEmail(userEmail.getEmail()));
+        return  userHeroes;
+    }
+
+    @ResponseBody @RequestMapping(value = "/getOne",method = RequestMethod.GET)
+    public HeroCustom getHC(){
+        return userService.getHeroCustomById(1);
+    }
 
     // Mapping for registration and login
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

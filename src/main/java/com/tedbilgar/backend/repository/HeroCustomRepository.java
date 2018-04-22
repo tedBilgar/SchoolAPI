@@ -5,10 +5,13 @@ import com.tedbilgar.backend.model.HeroCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface HeroCustomRepository extends JpaRepository<HeroCustom,Long> {
-    @Override
-    HeroCustom findOne(Long aLong);
+import java.util.List;
+import java.util.Set;
 
-    HeroCustom findHeroCustomByHero_idAndUser_id(int hero_id,int user_id);
+@Repository
+public interface HeroCustomRepository extends JpaRepository<HeroCustom,Long>{
+    HeroCustom findHeroCustomByUserIdAndHeroId(int userId,int heroId);
+    HeroCustom findHeroCustomById(int id);
+
+    Set<HeroCustom> findHeroCustomsByUserId(int userId);
 }
