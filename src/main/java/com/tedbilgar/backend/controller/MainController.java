@@ -119,6 +119,11 @@ public class MainController {
         userService.setLevelGradeByEmailAndHero(userHeroGrade.getUser_email(),userHeroGrade.getHero_name(),userHeroGrade.getGrade());
     }
 
+    @RequestMapping(value = "/setTreeGrade",method = RequestMethod.POST)
+    public void setTreeGrade(@RequestBody UserHeroGrade userHeroGrade){
+        userService.setTreeGradeByEmailAndHero(userHeroGrade.getUser_email(),userHeroGrade.getHero_name(),userHeroGrade.getGrade());
+    }
+
     @ResponseBody @RequestMapping(value= "/getHeroesByUser",method = RequestMethod.POST)
     public UserHeroes getHeroesByUser(@RequestBody UserEmail userEmail){
         UserHeroes userHeroes = new UserHeroes();
