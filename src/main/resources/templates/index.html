@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Игра</title>
+	<link rel="stylesheet" href="libs/reset.css" />
+	<link rel="stylesheet" href="libs/960_12_col.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="libs/OwlCarousel2-2.2.1/dist/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="libs/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.css">
+	<link rel="stylesheet" href="css/avgrund.css">
+	<link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/headhesive.css">
+	<script>
+			function openDialog() {
+				Avgrund.show( "#default-popup" );
+			}
+			function closeDialog() {
+				Avgrund.hide();
+			}
+	</script>
+</head>
+<body>
+	<header>
+		<div class="container_12">
+			<div class="grid_3">
+da
+			</div>
+			<div class="grid_4">
+da
+			</div>
+			<div class="grid_3" id = "top_text">
+				Присоединяйтесь!
+			</div>
+			<div class="grid_2">
+				<button onclick="javascript:openDialog();">Вход</button>
+			</div>
+		</div>
+		<div class="banner">
+			<nav class="container">
+				<div class="container_12">
+					<div class="grid_7">
+						<span><a href="#">Главная</a></span>
+						<span><a href="#">Информация</a></span>
+						<span><a href="#">Рейтинг игроков</a></span>
+						<span><a href="#">Обратная связь</a></span>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	  <a id="showHere"></a>
+	<section id="slider">
+				<div id="slider_container" class="owl-carousel owl-theme">
+					<a href="#"><img height = "348" src="img/1.png" alt="slide1"></a>
+					<a href="#"><img height = "348" src="img/3.png" alt="slide2"></a>
+				</div>
+				<div class="download">
+					<ul>
+						<li><span class="description">Версия для PC <br/><a href="#">Скачать</a></span><img src="img/2.png" alt="download"></li>
+					</ul>
+				</div>
+	</section>
+	<section id = "gallery">
+		<h1>Галерея</h1>
+		<div class="container_12">
+			<div class="grid_4">
+				<img src="img/img_gallery01.jpg" alt="img_gallery01">
+			</div>
+			<div class="grid_4">
+				<img src="img/img_gallery02.jpg" alt="img_gallery02">
+			</div>
+			<div class="grid_4">
+				<img src="img/img_gallery03.jpg" alt="img_gallery03">
+			</div>
+		</div>
+		<div class="container_12">
+			<div class="grid_4">
+				<img src="img/img_gallery04.jpg" alt="img_gallery04">
+			</div>
+			<div class="grid_4">
+				<img src="img/img_gallery05.jpg" alt="img_gallery05">
+			</div>
+			<div class="grid_4">
+				<img src="img/img_gallery06.jpg" alt="img_gallery06">
+			</div>
+		</div>
+	</section>
+	<footer>
+		<div class="container_12">
+			<div class="grid_12" id="columns_footer">
+				<table width="100%">
+					<tr>
+						<td id="footer_nav">
+							<div id="heading_footer1">Навигация:</div>
+							<ul>
+								<li><a href="#">Главная</a></li>
+								<li><a href="#">Информация</a></li>
+								<li><a href="#">Рейтинг игроков</a></li>
+								<li><a href="#">Обратная связь</a></li>
+							</ul>
+						</td>
+						<td id="additional_information">
+								<div id="heading_footer2">Дополнительная информация:</div><br/>
+							<span class="color_text"><a target="_blank" href="#">Скачать версию для PC</a></span><br/>
+							<span class="color_text"><a target="_blank" href="#">Скачать версию для Android</a></span>
+						</td>
+						<td id="developers_information">
+							<div id="heading_footer3">Разработчики сайта:</div><br/>
+							<span class="color_text">
+								Front-end: Александр Сиротюк<br/>
+								Back-end: Денис Ураканов
+							</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</footer>
+	<aside id="default-popup" class="avgrund-popup">
+			<h2>Вход</h2>
+			<form id = "entrance" name="feedback" action="" method="post">
+				<label>Your name: </label><br />
+				<input type="text" name = "name" placeholder = "Name"/> 
+				<br />
+				<label>Your Email: </label><br />
+				<input type="text" name = "email" placeholder = "Email"/>
+				<br />
+				<label>Your Password: </label><br />
+				<input type="password" name = "password" maxlength = "16"  placeholder = "Password"> 
+			</form>
+			<button onclick="javascript:closeDialog();">Войти</button>
+	</aside>
+	<div class="avgrund-cover"></div>
+	<script type="text/javascript" src="libs/jquery-3.3.1.min.js"></script>
+	<script src="libs/OwlCarousel2-2.2.1/dist/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/avgrund.js"></script>
+	<script type="text/javascript" src="js/headhesive.js"></script>
+    <script>
+      // Set options
+      var options = {
+          offset: '#showHere',
+          offsetSide: 'top',
+          classes: {
+              clone:   'banner--clone',
+              stick:   'banner--stick',
+              unstick: 'banner--unstick'
+          }
+      };
+
+      // Initialise with options
+      var banner = new Headhesive('.banner', options);
+
+      // Headhesive destroy
+      // banner.destroy();
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+aside h2{
+	text-align: center;
+	font-size: 15pt;
+}
+header{
+	background-color: #000;
+	height: 100px;
+}
+header .grid_2 button{
+	text-decoration: none;
+	color: #1b70aa;
+	font-family:  Arial, sans-serif;
+	border: solid 1px;
+	padding: 8px 25px 8px 25px;
+	background-color: #49484f;
+	border-color: #49484f;
+	border-radius: 3px;
+	font-size: 15pt;
+}
+header .grid_2{
+	margin-top: 30px;
+	text-align: center;	
+}
+header .grid_2 button:hover{
+	color: #0f8ee4;
+	background-color: #5d6063;
+}
+header #top_text{
+	color: #83878a;
+	font-family:  Arial, sans-serif;
+	margin-top: 40px;
+	font-style: italic;
+}
+nav{
+		background-color: #1da765;
+		margin-top: 30px;
+		height: 60px;
+}
+nav .container_12{
+	background-color: black;
+	width: 100%;
+	height: 60px;
+	opacity: 0.7;
+}
+nav .grid_7 a{
+	text-decoration: none;
+	font-family:  Arial, sans-serif;
+	margin-left: 10px;
+	color: white;
+	border: solid 1px black;
+	padding: 20px 10px 20px 10px;
+	display: inline-block;
+}
+nav .grid_7 a:hover{
+	color: red;
+}
+#slider{
+	margin-top: 58px;
+}
+/*#slider #slider_container img{
+	width: 70%;
+}*/
+
+#slider_container{
+	display: inline-block;
+	width: 60%;
+	float: left;
+}
+
+/*Gallery*/
+
+#gallery h1{
+	font-size: 20pt;
+	text-align: center;
+	margin-top: 30px;
+	font-family:  Arial, sans-serif;
+}
+#gallery img {
+	padding-top: 15px;
+	display: block;
+	margin: 0 auto;
+	width: 250px;
+	height: 170px;
+}
+
+/*Footer*/
+
+footer{
+	margin-top: 30px;
+}
+#footer_nav{
+	padding-left: 25px;
+}
+#additional_information{
+	padding-left: 180px;
+}
+#heading_footer1{
+	padding-bottom: 5px;
+	font-size: 14pt;
+	font-family:  Arial, sans-serif;
+}
+#heading_footer2{
+	font-size: 14pt;
+	font-family:  Arial, sans-serif;
+	margin-bottom: -10px;
+}
+#heading_footer3{
+	font-size: 14pt;
+	font-family:  Arial, sans-serif;
+	margin-bottom: -10px;
+}
+footer a{
+	text-decoration: none;
+	color: #434343;
+	font-size: 13pt;
+}
+.color_text{
+	color: #434343;
+	font-size: 13pt;
+}
+#developers_information{
+	padding-right: 25px;
+}
+footer span a:hover{
+	color: black;
+}
+footer li a:hover{
+	color: black;
+}
+/*Download*/
+
+.download li{
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+.download img{
+	/*width: 100%;*/
+	display: block;
+	height: 348px;
+}
+.description{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.5);
+	color: white;
+	text-align: center;
+	padding-top: 28%;
+	opacity: 0;
+	transition: all .5s;
+	top: 100%;
+	font-family: Arial, sans-serif;
+}
+.download li:hover .description{
+	display: block;
+	opacity: 1;
+	top: 0;
+}
+.description a{
+	text-decoration: none;
+	color: #D23B3B;
+	border: 1px solid;
+	padding: 3px;
+	display: inline-block;
+	margin-top: 10px;
+}
