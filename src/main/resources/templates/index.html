@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="UTF-8">
 	<title>Игра</title>
@@ -12,6 +13,13 @@
 	<link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/headhesive.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome-all.css}" />
+	<!-- Custom styles for this template -->
+	<link href="css/jumbotron.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
 	<script>
 			function openDialog() {
 				Avgrund.show( "#default-popup" );
@@ -33,18 +41,25 @@ da
 			<div class="grid_3" id = "top_text">
 				Присоединяйтесь!
 			</div>
-			<div class="grid_2">
-				<button onclick="javascript:openDialog();">Вход</button>
+
+			<div class="grid_2" sec:authorize="isAnonymous()">
+				<span><a href="/login">Вход</a></span>
 			</div>
+
+			<div class="grid_2" sec:authorize="isAuthenticated()">
+				<p1>Приветсвуем воина </p1>
+				<p1 th:text="${user.username}"></p1>
+			</div>
+
 		</div>
 		<div class="banner">
 			<nav class="container">
 				<div class="container_12">
 					<div class="grid_7">
 						<span><a href="#">Главная</a></span>
-						<span><a href="#">Информация</a></span>
+						<span><a href="/stat">Информация</a></span>
 						<span><a href="#">Рейтинг игроков</a></span>
-						<span><a href="#">Обратная связь</a></span>
+						<span><a href="/#">Обратная связь</a></span>
 					</div>
 				</div>
 			</nav>
@@ -98,7 +113,7 @@ da
 								<li><a href="#">Главная</a></li>
 								<li><a href="#">Информация</a></li>
 								<li><a href="#">Рейтинг игроков</a></li>
-								<li><a href="#">Обратная связь</a></li>
+								<li><a href="/login">Вход</a></li>
 							</ul>
 						</td>
 						<td id="additional_information">
@@ -120,17 +135,14 @@ da
 	</footer>
 	<aside id="default-popup" class="avgrund-popup">
 			<h2>Вход</h2>
-			<form id = "entrance" name="feedback" action="" method="post">
-				<label>Your name: </label><br />
-				<input type="text" name = "name" placeholder = "Name"/> 
-				<br />
+			<form id = "entrance" name="feedback" th:action="@{/index}" method="post">
 				<label>Your Email: </label><br />
-				<input type="text" name = "email" placeholder = "Email"/>
+				<input type="email" id="email" name="email" placeholder = "Email"/>
 				<br />
 				<label>Your Password: </label><br />
-				<input type="password" name = "password" maxlength = "16"  placeholder = "Password"> 
+				<input type="password" id="password" name="password" maxlength = "16"  placeholder = "Password">
 			</form>
-			<button onclick="javascript:closeDialog();">Войти</button>
+			<button onclick="javascript:closeDialog();" type="submit">Войти</button>
 	</aside>
 	<div class="avgrund-cover"></div>
 	<script type="text/javascript" src="libs/jquery-3.3.1.min.js"></script>

@@ -48,7 +48,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     public String getUserNameByEmail(String email){
-        return userRepository.findUserByEmail(email).getName();
+        return userRepository.findUserByEmail(email).getUsername();
     }
 
     @Override
@@ -134,6 +134,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     public Set<HeroCustom> getHeroesCustomsByUserEmail(String email) {
         return heroCustomRepository.findHeroCustomsByUserId(userRepository.findUserByEmail(email).getId());
+    }
+
+    @Override
+    public List<User> findUsersByActiveOrderByScoreDesc(boolean active) {
+        return userRepository.findUsersByActiveOrderByScoreDesc(active);
     }
 
     // Essential funcs

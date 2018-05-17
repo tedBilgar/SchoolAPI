@@ -14,7 +14,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "game_user")
-@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -70,12 +69,13 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
+
+    public String getUsername() {
         return username;
     }
 
-    public void setName(String name) {
-        this.username = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

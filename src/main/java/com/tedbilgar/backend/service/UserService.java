@@ -30,4 +30,6 @@ public interface UserService {
 
     public Set<HeroCustom> getHeroesCustomsByUserEmail(String email);
 
+    public List<User> findUsersByActiveOrderByScoreDesc(boolean active);
+
 }

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Игра</title>
+	<link rel="stylesheet" href="libs/reset.css" />
+	<link rel="stylesheet" href="libs/960_12_col.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="libs/OwlCarousel2-2.2.1/dist/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="libs/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.css">
+	<link rel="stylesheet" href="css/avgrund.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/headhesive.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome-all.css}" />
+	<!-- Custom styles for this template -->
+	<link href="css/jumbotron.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+	<script>
+        function openDialog() {
+            Avgrund.show( "#default-popup" );
+        }
+        function closeDialog() {
+            Avgrund.hide();
+        }
+	</script>
+</head>
+<body>
+<header>
+	<div class="container_12">
+		<div class="grid_3">
+			da
+		</div>
+		<div class="grid_4">
+			da
+		</div>
+		<div class="grid_3" id = "top_text">
+			Присоединяйтесь!
+		</div>
+
+		<div class="grid_2" sec:authorize="isAnonymous()">
+			<span><a href="/login">Вход</a></span>
+		</div>
+
+		<div class="grid_2" sec:authorize="isAuthenticated()">
+			<p1>Приветсвуем воина </p1>
+			<p1 th:text="${userAuth.email}"></p1>
+		</div>
+
+	</div>
+	<div class="banner">
+		<nav class="container">
+			<div class="container_12">
+				<div class="grid_7">
+					<span><a href="#">Главная</a></span>
+					<span><a href="#">Информация</a></span>
+					<span><a href="#">Рейтинг игроков</a></span>
+					<span><a href="/#">Обратная связь</a></span>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+<div>
+	<ul>
+		<li th:each="user : ${users}">
+			<span th:text="${user.username}"></span>
+			<span th:text="${user.score}"></span>
+		</li>
+	</ul>
+</div>
+
+<footer>
+	<div class="container_12">
+		<div class="grid_12" id="columns_footer">
+			<table width="100%">
+				<tr>
+					<td id="footer_nav">
+						<div id="heading_footer1">Навигация:</div>
+						<ul>
+							<li><a href="#">Главная</a></li>
+							<li><a href="#">Информация</a></li>
+							<li><a href="#">Рейтинг игроков</a></li>
+							<li><a href="/login">Вход</a></li>
+						</ul>
+					</td>
+					<td id="additional_information">
+						<div id="heading_footer2">Дополнительная информация:</div><br/>
+						<span class="color_text"><a target="_blank" href="#">Скачать версию для PC</a></span><br/>
+						<span class="color_text"><a target="_blank" href="#">Скачать версию для Android</a></span>
+					</td>
+					<td id="developers_information">
+						<div id="heading_footer3">Разработчики сайта:</div><br/>
+						<span class="color_text">
+								Front-end: Александр Сиротюк<br/>
+								Back-end: Денис Ураканов
+							</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</footer>
+<aside id="default-popup" class="avgrund-popup">
+	<h2>Вход</h2>
+	<form id = "entrance" name="feedback" th:action="@{/index}" method="post">
+		<label>Your Email: </label><br />
+		<input type="email" id="email" name="email" placeholder = "Email"/>
+		<br />
+		<label>Your Password: </label><br />
+		<input type="password" id="password" name="password" maxlength = "16"  placeholder = "Password">
+	</form>
+	<button onclick="javascript:closeDialog();" type="submit">Войти</button>
+</aside>
+<div class="avgrund-cover"></div>
+<script type="text/javascript" src="libs/jquery-3.3.1.min.js"></script>
+<script src="libs/OwlCarousel2-2.2.1/dist/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/avgrund.js"></script>
+<script type="text/javascript" src="js/headhesive.js"></script>
+<script>
+    // Set options
+    var options = {
+        offset: '#showHere',
+        offsetSide: 'top',
+        classes: {
+            clone:   'banner--clone',
+            stick:   'banner--stick',
+            unstick: 'banner--unstick'
+        }
+    };
+
+    // Initialise with options
+    var banner = new Headhesive('.banner', options);
+
+    // Headhesive destroy
+    // banner.destroy();
+</script>
+</body>
+</html>
